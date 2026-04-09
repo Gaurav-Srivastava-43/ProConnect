@@ -1,4 +1,3 @@
-import { upload } from './controllers/upload.js';
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
@@ -30,8 +29,13 @@ app.use(cors());
 app.use('', authRoutes);
 
 // Upload a single file
-// app.post("/createPost", upload().single("file"), async (req, res) => {
+// app.post("/createPost", upload.single("file"), async (req, res) => {
 //   try {
+//     if(!req.file){
+//       console.log("file obj missing");
+//       return;
+//     }
+//     console.log("fileId : ",req.body.id);
 //     res.status(201).json({ text: "File uploaded successfully !" });
 //   } catch (error) {
 //     console.log(error);
@@ -40,6 +44,7 @@ app.use('', authRoutes);
 //     });
 //   }
 // });
+
 
 //CREATING SERVER
 const server = http.createServer(app);
@@ -70,22 +75,3 @@ mongoose.connect('mongodb+srv://gauravsrivastava04gs_db_user:9SHqSZiiojVUXRT6@pr
         });
     }
 ).catch((e)=> console.log(`Error in db connection ${e}`));
-
-//MONGODB GRIDFS BUCKET CREATION FOR STORING FILES
-let bucket;
-(() => {
-  mongoose.connection.on("connected", () => {
-    bucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
-      bucketName: "filesBucket",
-    });
-    console.log("File Bucket created");
-    const res = async()=>{ 
-        await bucket.find({}).toArray()
-    };
-    res().then((val)=>{
-      console.log(val);
-    }).catch((err)=>{console.log(err);});
-  });
-})();
-
-export const getBucket = () => bucket;

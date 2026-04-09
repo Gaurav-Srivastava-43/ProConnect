@@ -21,7 +21,7 @@ const Message = ({message}) => {
       </div>
       <div className="messageContent">
         <p>{message.text}</p>
-        {message.file && <img src={message.file} alt="" />}
+        {message.file && <img src={`http://localhost:6001/fetchMedia/${message.file}`} alt="" />}
       </div>
     </div>
     </div>

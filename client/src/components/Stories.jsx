@@ -83,10 +83,10 @@ const Stories = () => {
                     </div>
                     <div className="storyPlayBodyContent">
                         {story.fileType === 'photo' ?
-                             <img src={story.file} alt="" />
+                             <img src={`http://localhost:6001/fetchMedia/${story.file}`} alt="" />
                         : 
                             <video id="videoPlayer" className='postimg' controls autoPlay muted>
-                                <source src={story.file} />
+                                <source src={`http://localhost:6001/fetchMedia/${story.file}`} />
                             </video>
                         }
                         <p>{story.text}</p>

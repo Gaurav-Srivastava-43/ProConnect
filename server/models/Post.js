@@ -14,7 +14,7 @@ const postSchema  = mongoose.Schema({
         type: String
     },
     file : {
-        type: String
+        type: mongoose.Schema.Types.ObjectId
     },
     description: {
         type: String

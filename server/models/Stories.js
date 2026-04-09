@@ -4,7 +4,7 @@ const storySchema = new mongoose.Schema({
     userId:{
         type: String
     },
-    username: {
+    userName: {
         type: String
     },
     userPic:{
@@ -14,7 +14,7 @@ const storySchema = new mongoose.Schema({
         type: String
     },
     file: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId
     },
     text:{
         type: String

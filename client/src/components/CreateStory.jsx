@@ -2,9 +2,10 @@ import React, { useContext, useState } from 'react';
 import '../styles/CreatePosts.css'
 import { GeneralContext } from '../context/GeneralContextProvider';
 import { RxCross2 } from 'react-icons/rx';
-import {ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import {storage} from '../firebase.js';
-import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
+// import {ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+// import {storage} from '../firebase.js';
+// import { v4 as uuidv4 } from 'uuid';
 
 const CreateStory = () => {
 
@@ -16,42 +17,56 @@ const CreateStory = () => {
     const [uploadProgress, setUploadProgress] = useState();
 
     //CONDITION FOR 100% COMPLETION OF UPLOAD PROCESS -> CLEAR THE FIELDS
-    if (uploadProgress === 100){
-        setStoryDescription('');
-        setStoryFile(null);
-        setIsCreateStoryOpen(false);
-        setUploadProgress();
-    }
+    // if (uploadProgress === 100){
+    //     setStoryDescription('');
+    //     setStoryFile(null);
+    //     setIsCreateStoryOpen(false);
+    //     setUploadProgress();
+    // }
 
     //HANDLING THE UPLOAD PROCESS
     const handleStoryUpload = async (e) =>{
         e.preventDefault();
-        const storageRef = ref(storage, uuidv4());
-        const uploadTask = uploadBytesResumable(storageRef, storyFile);
 
-        uploadTask.on('state_changed', 
-        (snapshot) => {
-            setUploadProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100); 
-        }, 
-        (error) => {
-            console.log(error);
-        }, () => {
-            getDownloadURL(uploadTask.snapshot.ref).then( async (downloadURL) => {
-            console.log('File available at', downloadURL);
+        // Check if file exists
+        if (!storyFile) return alert("Please select a file");
 
-            try{
-                await socket.emit('create-new-story', {userId: localStorage.getItem('userId'), username: localStorage.getItem('username'), 
-                                                        userPic: localStorage.getItem('profilePic'), fileType: storyType, file: downloadURL, 
-                                                        text: storyDescription});
-                setIsCreateStoryOpen(false);
+        // Create FormData object (required for file uploads)
+        const formData = new FormData();
+        formData.append('userId', localStorage.getItem('userId'));
+        formData.append('userName', localStorage.getItem('username'));
+        formData.append('userPic', localStorage.getItem('profilePic'));
+        formData.append('fileType', storyType);
+        formData.append('file', storyFile);
+        formData.append('text', storyDescription);
+
+        // await socket.emit('create-new-story', {userId: localStorage.getItem('userId'), username: localStorage.getItem('username'), 
+        //                                         userPic: localStorage.getItem('profilePic'), fileType: storyType, file: storyFile, 
+        //                                         text: storyDescription});
+        try {
+            setUploadProgress(10); // Start visual progress
+
+            const res = await axios.post('http://localhost:6001/createStory', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                onUploadProgress: (progressEvent) => {
+                    const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                    setUploadProgress(percentCompleted);
+                }
+        });
+
+            if (res.status === 201 || res.status === 200) {
+                // Reset fields on success
                 setStoryDescription('');
                 setStoryFile(null);
                 setIsCreateStoryOpen(false);
-                setUploadProgress();
-            }catch(err){
-                console.log(err);
-            }});
-        });
+                setUploadProgress(null);
+            }
+        } catch (err) {
+            console.error("Upload failed:", err);
+            setUploadProgress(null);
+        }
     }
 
   return (

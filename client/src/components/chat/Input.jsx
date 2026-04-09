@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { BiImageAdd } from 'react-icons/bi'
 import { GeneralContext } from '../../context/GeneralContextProvider'
+import axios from 'axios'
 import {v4 as uuid} from 'uuid';
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { storage } from '../../firebase';
+// import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+// import { storage } from '../../firebase';
 
 const Input = () => {
 
@@ -16,33 +17,34 @@ const Input = () => {
     const handleSend = async () =>{
 
       if (file){
-        const storageRef = ref(storage, uuid());
-        const uploadTask = uploadBytesResumable(storageRef, file);
-        uploadTask.on('state_changed', 
-        (snapshot) => {
-            setUploadProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100); 
-        }, 
-        (error) => {
-            console.log(error);
-        }, 
-        () => {
-            getDownloadURL(uploadTask.snapshot.ref).then( async (downloadURL) => {
-            console.log('File available at', downloadURL);
-
-            try{
-              let date = new Date() 
-              await socket.emit('new-message', {chatId: chatData.chatId ,id: uuid(), 
-                                                  text: text, file: downloadURL, 
-                                                  senderId: userId, date: date});
-              setUploadProgress();
-              setText('');
-              setFile(null);
-            }catch(err){
-                console.log(err);
+        try{
+          let date = new Date();
+          const formData = new FormData();
+          formData.append("file",file);
+          const res = await axios.post('http://localhost:6001/uploadMessageFile', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                onUploadProgress: (progressEvent) => {
+                    const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                    setUploadProgress(percentCompleted);
+                }
+          });
+          const fileId = res.data.id;
+          await socket.emit('new-message', {chatId: chatData.chatId ,id: uuid(), 
+                                                text: text, file: fileId, 
+                                                senderId: userId, date: date});
+          if (res.status === 201 || res.status === 200) {
+            // Reset fields on success
+            setUploadProgress();
+            setText('');
+            setFile(null);  
             }
-            });
-        });
-      }else{
+        }catch(err){
+            console.log(err);
+        }
+        }
+      else{
         let date = new Date() 
         await socket.emit('new-message', {chatId: chatData.chatId ,id: uuid(), 
                                             text: text,file: '', senderId: userId, date: date});

@@ -216,17 +216,21 @@ useEffect(()=>{
                     <img src={post.userPic} alt="" className="userpic" />
                     <h3 className="usernameTop">{post.userName}</h3>
                 </div>
+                {
+                  userProfile._id === userId ?
                 <button className='btn btn-danger deletePost' onClick={()=> handleDeletePost(post._id)}>Delete</button>
+                : <></>
+                }
             </div>
 
             { post.fileType === 'photo'?
                     
-                    <img src={post.file} className='postimg' alt="" />
+                    <img src={`http://localhost:6001/fetchMedia/${post.file}`} className='postimg' alt="" />
                 
                     :
                     
                     <video id="videoPlayer" className='postimg' controls autoPlay muted>
-                        <source src={post.file} />
+                        <source src={`http://localhost:6001/fetchMedia/${post.file}`} />
                     </video>
                     
                     }

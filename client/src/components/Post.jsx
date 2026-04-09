@@ -74,10 +74,10 @@ const Post = () => {
 
         {/* POST CONTENT SECTION */}
         { post.fileType === 'photo'?
-            <img src={`http://localhost:6001/download/file/${post.file}`} className='postimg' alt="" />
+            <img src={`http://localhost:6001/fetchMedia/${post.file}`} className='postimg' alt="" />
             :
             <video id="videoPlayer" className='postimg' controls autoPlay muted>
-                <source src={`http://localhost:6001/download/file/${post.file}`} />
+                <source src={`http://localhost:6001/fetchMedia/${post.file}`} />
             </video>
         }
 

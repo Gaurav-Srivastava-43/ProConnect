@@ -3,7 +3,7 @@ import '../styles/CreatePosts.css'
 import {RxCross2} from 'react-icons/rx' 
 import { GeneralContext } from '../context/GeneralContextProvider'
 import axios from "axios";
-import {ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+//import {ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 //import {storage} from '../firebase.js';
 //import { v4 as uuidv4 } from 'uuid';
 
@@ -46,9 +46,9 @@ const CreatePost = () => {
         setUploadProgress(10); // Start visual progress
 
         const res = await axios.post('http://localhost:6001/createPost', formData, {
-            // headers: {
-            //     'Content-Type': 'multipart/form-data'
-            // },
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
             onUploadProgress: (progressEvent) => {
                 const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
                 setUploadProgress(percentCompleted);
