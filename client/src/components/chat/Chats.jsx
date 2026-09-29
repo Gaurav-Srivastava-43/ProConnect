@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {GeneralContext} from '../../context/GeneralContextProvider';
-const Chats = () => {
+const Chats = ({ onSelectChat }) => {
 
   const {socket, chatFirends, setChatFriends, dispatch, chatData} = useContext(GeneralContext)
   const userId = localStorage.getItem('userId');
@@ -14,10 +14,12 @@ const Chats = () => {
     });
   },[])
 
-  const handleSelect = (data) =>{
-    dispatch({type:"CHANGE_USER", payload: data});
-    console.log(chatData);
-  }
+  const handleSelect = (data) => {
+  dispatch({ type: "CHANGE_USER", payload: data });
+    if (onSelectChat) {
+      onSelectChat();
+    }
+  };
   useEffect(()=>{
 
     if(chatData.chatId !== null){

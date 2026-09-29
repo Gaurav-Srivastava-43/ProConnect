@@ -1,5 +1,7 @@
-.homePage{
-    height: 100vh;
+.homePage {
+    min-height: 100dvh;
+    height: 100dvh;
+    width: 100%;
     background-image: url('../images/landing-bg.jpg');
-    background-position: center ;
+    background-position: center;
 }

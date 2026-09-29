@@ -94,17 +94,6 @@
     align-items: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .profilePostsContainer{
     width: 46vw;
     height: 90vh;
@@ -124,8 +113,6 @@
     justify-content: center;
 }
 
-
-
 .profileFollowContainer{
     width: 23.5vw;
     height: 90vh;
@@ -144,3 +131,82 @@
     cursor: pointer;
 }
 
+@media screen and (max-width: 767px) {
+  .profilePage {
+    width: 100%;
+    min-height: 100dvh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 65px;
+    padding-bottom: 70px;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  .profileCard,
+  .profileEditCard {
+    width: calc(100% - 20px);
+    box-sizing: border-box;
+    margin: 0 auto;
+    left: auto;
+    top: auto;
+    position: relative;
+    padding: 18px;
+  }
+
+  .profileCard img {
+    width: 110px;
+    height: 110px;
+  }
+
+  .profileCard h4 {
+    font-size: 1.1rem;
+  }
+
+  .profileCard p {
+    width: 100%;
+    word-break: break-word;
+  }
+
+  .profileDetailCounts {
+    gap: 40px;
+    justify-content: center;
+  }
+
+  .profileControlBtns {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .profileControlBtns button {
+    min-width: 80px;
+  }
+
+  .profileEditCard {
+    align-items: stretch;
+  }
+
+  .profileEditCard .mb-3 {
+    width: 100%;
+  }
+
+  .profilePostsContainer {
+    width: calc(100% - 16px);
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    margin: 0 auto;
+    top: auto;
+    position: relative;
+    overflow: visible;
+    padding-bottom: 10px;
+  }
+
+  .profilePostsContainer .Post {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

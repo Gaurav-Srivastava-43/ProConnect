@@ -24,3 +24,21 @@
 .searchedUserInfo span{
     font-size: 1.2rem;
 }
+
+@media screen and (max-width: 767px) {
+  .searchContainer {
+    width: calc(100vw - 20px);
+    max-width: 360px;
+    left: 10px;
+    top: 48px;
+    z-index: 110;
+  }
+
+  .searchedUserInfo {
+    margin: 12px;
+  }
+
+  .searchedUserInfo span {
+    font-size: 1rem;
+  }
+}

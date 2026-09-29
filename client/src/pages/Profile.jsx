@@ -179,17 +179,17 @@ useEffect(()=>{
         
 
         <div className='profileEditCard'style={!isUpdating ? {display:'none'}: {display:"flex"}}>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Profile Image</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" onChange={(e)=> setUpdateProfilePic(e.target.value)} value={updateProfilePic} />
+          <div className="mb-3">
+            <label htmlFor="exampleInputEmail1" className="form-label">Profile Image</label>
+            <input type="text" className="form-control" id="exampleInputEmail1" onChange={(e)=> setUpdateProfilePic(e.target.value)} value={updateProfilePic} />
           </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Username</label>
-            <input type="text" class="form-control" id="exampleInputPassword1" onChange={(e)=> setUpdateProfileUsername(e.target.value)} value={updateProfileUsername}/>
+          <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">Username</label>
+            <input type="text" className="form-control" id="exampleInputPassword1" onChange={(e)=> setUpdateProfileUsername(e.target.value)} value={updateProfileUsername}/>
           </div>
-          <div class="mb-3">
-            <label for="editAbout" class="form-label">About</label>
-            <input type="text" class="form-control" id="editAbout" onChange={(e)=> setUpdateProfileAbout(e.target.value)} value={updateProfileAbout}/>
+          <div className="mb-3">
+            <label htmlFor="editAbout" className="form-label">About</label>
+            <input type="text" className="form-control" id="editAbout" onChange={(e)=> setUpdateProfileAbout(e.target.value)} value={updateProfileAbout}/>
           </div>
           <button className='btn btn-primary' onClick={handleUpdate}>Update</button>
         </div>

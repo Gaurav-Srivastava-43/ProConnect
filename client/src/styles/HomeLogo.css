@@ -52,26 +52,41 @@
         
     }
 }
-@media screen and (max-width: 500px) {
-    .LogoSearch{
-        top: 0vh;
-        z-index: 7;
-        height: 7vh;
-        align-items: center;
-        width: 100%;
-        justify-content: center;
-        background-color: rgba(226, 242, 248, 0.443);
-        backdrop-filter: blur(15px);
-    }
-    .logoImg {
-        height: 4vh;
-    }
-    .Search{
-        padding: 5px;
-        height: 4.5vh;
-    }
-    .Search>input{
-        width: 50vw;
-        
-    }
+@media screen and (max-width: 767px) {
+  .LogoSearch {
+    top: 0;
+    left: 0;
+    height: 58px;
+    width: 100%;
+    padding: 0 10px;
+    gap: 8px;
+    justify-content: center;
+    background-color: rgba(226, 242, 248, 0.85);
+    backdrop-filter: blur(15px);
+    z-index: 101;
+  }
+
+  .logoImg {
+    height: 32px;
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  .Search {
+    height: 38px;
+    padding: 4px;
+    flex: 1;
+    max-width: 280px;
+  }
+
+  .Search > input {
+    width: 100%;
+    min-width: 0;
+    padding: 0 8px;
+    font-size: 14px;
+  }
+
+  .s-icon {
+    flex-shrink: 0;
+  }
 }

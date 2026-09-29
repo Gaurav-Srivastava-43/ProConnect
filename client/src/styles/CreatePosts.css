@@ -105,13 +105,41 @@
     border-radius: 0.4rem;
 }
 
-@media only screen and (max-width: 600px){
-    .createPostContainer{
-        top: 20vh;
-        left: 5vw;
-        width: 90vw;
-    }
-    .uploadImgBox label{
-        width: 82vw;
-    }
+@media screen and (max-width: 767px) {
+  .createPostModalBg {
+    padding-top: 0;
+  }
+
+  .createPostContainer {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100vw - 24px);
+    max-width: 500px;
+    max-height: calc(100dvh - 30px);
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 16px;
+  }
+
+  .createPostTitle {
+    font-size: 1.3rem;
+  }
+
+  .uploadImgBox label {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .uploadBox #uploadPostFile {
+    max-width: 100%;
+  }
+
+  .createPostBody form {
+    gap: 14px;
+  }
+
+  .createPostBody form button {
+    width: 100%;
+  }
 }

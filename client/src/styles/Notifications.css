@@ -96,13 +96,15 @@
 
 
 
-@media only screen and (max-width: 600px){
-    .notificationsContainer{
-        top: 20vh;
-        left: 5vw;
-        width: 90vw;
-    }
-    .uploadImgBox label{
-        width: 82vw;
-    }
+@media screen and (max-width: 767px) {
+  .notificationsContainer {
+    top: 70px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: calc(100vw - 24px);
+    height: calc(100dvh - 150px);
+    max-height: 500px;
+    box-sizing: border-box;
+  }
 }

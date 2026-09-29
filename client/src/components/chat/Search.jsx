@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { TbSearch } from 'react-icons/tb'
 import { GeneralContext } from '../../context/GeneralContextProvider';
 
-const Search = () => {
+const Search = ({ onSelectChat }) => {
 
   const {dispatch, socket} = useContext(GeneralContext)
   const [search, setSearch] = useState('');
@@ -27,10 +27,13 @@ const Search = () => {
     });
   },[socket])
 
-  const handleSelect = async (user) =>{
-    await dispatch({type:"CHANGE_USER", payload: user});
-    setUser();
-  }
+  const handleSelect = async (user) => {
+  await dispatch({ type: "CHANGE_USER", payload: user });
+  setUser();
+    if (onSelectChat) {
+      onSelectChat();
+    }
+  };
 
   return (
     <div className='search'>

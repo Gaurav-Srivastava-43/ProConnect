@@ -54,32 +54,43 @@
     }
 }
 
-@media screen and (max-width: 500px) {
-    .Navbar{
-        width: 100%;
-        position: fixed;
-        bottom: 0vh;
-        height: 7vh;
-        background-color: rgba(226, 242, 248, 0.443);
-        backdrop-filter: blur(15px);
-    }
-    .btns{
-        width: 35px;
-        height: 35px;
-    }
-    .Notifybtn{
-        width: 39px;
-        height: 39px;
-    }
-    .chatbtn{
-        width: 34px;
-        height: 34px;
-    }
-    .Navbar img{
-        width: 35px;
-        height: 35px;
-    }
-    
-}
+@media screen and (max-width: 767px) {
+  .Navbar {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: rgba(226, 242, 248, 0.85);
+    backdrop-filter: blur(15px);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 0;
+    padding: 0 10px;
+    z-index: 100;
+  }
 
+  .btns {
+    width: 28px;
+    height: 28px;
+  }
+
+  .Notifybtn {
+    width: 31px;
+    height: 31px;
+  }
+
+  .chatbtn {
+    width: 29px;
+    height: 29px;
+    padding-top: 3px;
+  }
+
+  .Navbar img {
+    width: 31px;
+    height: 31px;
+  }
+}
 

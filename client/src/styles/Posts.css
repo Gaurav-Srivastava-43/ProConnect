@@ -195,14 +195,92 @@
     background-color:rgb(188, 117, 255) ;
 }
 
+@media screen and (max-width: 767px) {
+  .postsContainer {
+    width: 100%;
+    height: 100dvh;
+    box-sizing: border-box;
+    left: 0;
+    top: 0;
+    padding: 185px 8px 75px 8px;
+    overflow-y: auto;
+    box-shadow: none;
+    border-radius: 0;
+  }
 
+  .Post {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    gap: 12px;
+    border-radius: 12px;
+  }
 
-@media screen and (max-width: 500px){
-    .placeiconcol{
-        right: 4vw;
-    }
+  .postTop {
+    width: 100%;
+  }
 
-    .genpost-linkdiv{
-        margin-left: 7vw;
-    }
+  .postTopDetails {
+    min-width: 0;
+    align-items: center;
+  }
+
+  .usernameTop {
+    font-size: 1rem;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .postimg {
+    width: 100%;
+    max-height: 65vh;
+    object-fit: contain;
+  }
+
+  .postReact {
+    margin-left: 0;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .placeiconcol {
+    max-width: 60%;
+    overflow: hidden;
+  }
+
+  .place {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .detail {
+    margin-right: 0;
+  }
+
+  .labeldata {
+    left: 0;
+    padding-left: 0;
+    word-break: break-word;
+  }
+
+  .commentsContainer {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .commentsContainer .makeComment {
+    width: 100%;
+  }
+
+  .commentsContainer .makeComment input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .commentsBody {
+    margin-left: 0;
+  }
 }
