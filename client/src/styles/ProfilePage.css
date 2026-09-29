@@ -3,7 +3,7 @@
     width: 100%;
     display: flex;
     gap: 20px;
-    background-image: url('..\\images\\landing-bg.jpg');
+    background-image: url('../images/landing-bg.jpg');
     background-position: center ;
 }
 

@@ -8,7 +8,7 @@
     padding: 1.2rem;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     font-family: 'Exo 2', sans-serif;
-    background-image: url('..\\images\\landing-bg.jpg');
+    background-image: url('../images/landing-bg.jpg');
     box-shadow: 4px 2px 15px;
     background-position: center ;
 }
