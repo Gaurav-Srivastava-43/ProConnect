@@ -62,8 +62,9 @@ io.on("connection", (socket) =>{
 
 //MONGOOSE SETUP
 const PORT = process.env.PORT || 6001;
+const mongo_uri = process.env.MONGO_URI || 'mongodb+srv://gauravsrivastava04gs_db_user:9SHqSZiiojVUXRT6@projectcluster0.btt8drd.mongodb.net/?appName=ProjectCluster0' ; 
 
-mongoose.connect('mongodb+srv://gauravsrivastava04gs_db_user:9SHqSZiiojVUXRT6@projectcluster0.btt8drd.mongodb.net/?appName=ProjectCluster0'
+mongoose.connect(mongo_uri 
 // , { 
 //         useNewUrlParser: true,
 //         useUnifiedTopology: true,
