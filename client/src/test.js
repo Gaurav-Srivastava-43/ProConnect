@@ -8,7 +8,7 @@ const uploadFile = () => {
     formData.append("file",file);
 
     try {
-        const res = axios.post("http://localhost:6001/createPost",formData,{
+        const res = axios.post(`${process.env.REACT_APP_API_BASE_URL}/createPost`,formData,{
             headers: {
                 'Content-Type': 'multipart/form-data'
             }});

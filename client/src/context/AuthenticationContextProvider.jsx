@@ -19,7 +19,7 @@ const AuthenticationContextProvider = ({children}) => {
   const login = async () =>{
     try{
       const loginInputs = {email: email, password: password}
-        await axios.post('http://localhost:6001/login', loginInputs)
+        await axios.post(`${process.env.REACT_APP_API_BASE_URL}/login`, loginInputs)
         .then( async (res)=>{
             console.log("FETCHED",res);
             localStorage.setItem('userToken', res.data.token);
@@ -42,7 +42,7 @@ const AuthenticationContextProvider = ({children}) => {
   //REGISTER FUNCTIONALITY CONTEXT SETTING
   const register = async () =>{
     try{
-        await axios.post('http://localhost:6001/register', inputs)
+        await axios.post(`${process.env.REACT_APP_API_BASE_URL}/register`, inputs)
         .then( async (res)=>{
           localStorage.setItem('userToken', res.data.token);
           localStorage.setItem('userId', res.data.user._id);

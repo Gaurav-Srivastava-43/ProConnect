@@ -4,7 +4,7 @@ import socketIoClient from 'socket.io-client';
 //SETTING GLOBAL SOCKET CONNECTION
 export const SocketContext = createContext();
 
-const WS = 'http://localhost:6001';
+const WS = `${process.env.REACT_APP_API_BASE_URL}`;
 
 const socket = socketIoClient(WS);
 

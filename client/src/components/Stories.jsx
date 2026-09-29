@@ -23,7 +23,7 @@ const Stories = () => {
     
     const fetchStories = async () => { 
         try {
-            const response = await axios.get('http://localhost:6001/fetchAllStories');
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/fetchAllStories`);
             setStories(response.data)
             console.log(response.data[0])
         } catch (error) {
@@ -83,10 +83,10 @@ const Stories = () => {
                     </div>
                     <div className="storyPlayBodyContent">
                         {story.fileType === 'photo' ?
-                             <img src={`http://localhost:6001/fetchMedia/${story.file}`} alt="" />
+                             <img src={`${process.env.REACT_APP_API_BASE_URL}/fetchMedia/${story.file}`} alt="" />
                         : 
                             <video id="videoPlayer" className='postimg' controls autoPlay muted>
-                                <source src={`http://localhost:6001/fetchMedia/${story.file}`} />
+                                <source src={`${process.env.REACT_APP_API_BASE_URL}/fetchMedia/${story.file}`} />
                             </video>
                         }
                         <p>{story.text}</p>

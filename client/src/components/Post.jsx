@@ -18,7 +18,7 @@ const Post = () => {
       }, []);
     const fetchPosts = async () => { 
         try {
-          const response = await axios.get('http://localhost:6001/fetchAllPosts');
+          const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/fetchAllPosts`);
           const fetchedPosts = response.data;
           setPosts(fetchedPosts);
         } catch (error) {
@@ -74,10 +74,10 @@ const Post = () => {
 
         {/* POST CONTENT SECTION */}
         { post.fileType === 'photo'?
-            <img src={`http://localhost:6001/fetchMedia/${post.file}`} className='postimg' alt="" />
+            <img src={`${process.env.REACT_APP_API_BASE_URL}/fetchMedia/${post.file}`} className='postimg' alt="" />
             :
             <video id="videoPlayer" className='postimg' controls autoPlay muted>
-                <source src={`http://localhost:6001/fetchMedia/${post.file}`} />
+                <source src={`${process.env.REACT_APP_API_BASE_URL}/fetchMedia/${post.file}`} />
             </video>
         }
 

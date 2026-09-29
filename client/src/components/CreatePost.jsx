@@ -45,7 +45,7 @@ const CreatePost = () => {
     try {
         setUploadProgress(10); // Start visual progress
 
-        const res = await axios.post('http://localhost:6001/createPost', formData, {
+        const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/createPost`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             },

@@ -21,7 +21,7 @@ const Input = () => {
           let date = new Date();
           const formData = new FormData();
           formData.append("file",file);
-          const res = await axios.post('http://localhost:6001/uploadMessageFile', formData, {
+          const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/uploadMessageFile`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
